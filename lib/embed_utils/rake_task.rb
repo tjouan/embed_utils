@@ -178,6 +178,7 @@ module EmbedUtils
         %W[
           #{LIBRARIES_DIR}/#{lib}
           #{arduino_dir}/libraries/#{lib}/src/avr
+          #{arduino_dir}/libraries/#{lib}/src
           #{arduino_dir}/hardware/arduino/avr/libraries/#{lib}
         ].find do |lib_dir|
           Dir.exist? lib_dir
