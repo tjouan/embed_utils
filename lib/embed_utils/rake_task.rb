@@ -69,7 +69,8 @@ module EmbedUtils
       end
 
       rule '.o' => [obj_to_src, *libs_build_dirs] do |t|
-        args = [*cpp_flags, *board.predefines, *includes]
+        args = [*cpp_flags, *board.predefines, *includes, ENV['OPTIONS']]
+          .compact
         if t.source.pathmap('%x') == '.c'
           sh "#{CC} #{args.join ' '} #{t.source} -c -o #{t.name}"
         else
