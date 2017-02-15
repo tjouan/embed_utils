@@ -38,6 +38,18 @@ module EmbedUtils
           -DF_CPU=16000000L
         ]
       end
+
+      def avr_mcu
+        mcu
+      end
+
+      def avr_programmer
+        'arduino'
+      end
+
+      def upload_speed
+        115200
+      end
     end
 
     class Micro < Base
@@ -55,6 +67,18 @@ module EmbedUtils
           -DUSB_VID=0x2341
           -DUSB_PID=0x8037
         ]
+      end
+
+      def avr_mcu
+        'm32u4'
+      end
+
+      def avr_programmer
+        'avr109'
+      end
+
+      def upload_speed
+        57600
       end
     end
   end

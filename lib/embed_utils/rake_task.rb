@@ -82,7 +82,8 @@ module EmbedUtils
 
       desc 'Install program on USB board'
       task install: :hex do
-        sh "avrdude -V -p atmega328p -D -c arduino -P #{PORT} -U flash:w:#{HEX_FILE}:i"
+        sh "avrdude -V -p #{board.avr_mcu} -D -c #{board.avr_programmer}" \
+          " -P #{PORT} -b #{board.upload_speed} -U flash:w:#{HEX_FILE}:i"
       end
 
       desc 'Remove build directory'
