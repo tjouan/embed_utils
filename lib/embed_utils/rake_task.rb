@@ -25,6 +25,7 @@ module EmbedUtils
     CXXFLAGS      = %w[
       -std=c++11
       -fno-exceptions
+      -fno-threadsafe-statics
     ]
 
     # FIXME: for default one, sort /dev/cuaU? by date and pick last one
