@@ -32,7 +32,7 @@ module EmbedUtils
     PORT          = ENV.fetch 'PORT', '/dev/cuaU1'
 
     attr_reader   :board
-    attr_accessor :libs_archive, :libraries, :src_dir, :arduino_dir
+    attr_accessor :libs_archive, :libraries, :src_dir, :arduino_dir, :options
 
     def initialize
       @board        = Board[:uno]
@@ -40,6 +40,7 @@ module EmbedUtils
       @libraries    = LIBRARIES
       @src_dir      = SRC_DIR
       @arduino_dir  = ARDUINO_DIR
+      @options      = [*ENV['OPTIONS']&.split].compact
       yield self if block_given?
       define
     end
@@ -69,8 +70,7 @@ module EmbedUtils
       end
 
       rule '.o' => [obj_to_src, *libs_build_dirs] do |t|
-        args = [*cpp_flags, *board.predefines, *includes, ENV['OPTIONS']]
-          .compact
+        args = [*cpp_flags, *board.predefines, *includes, *options].compact
         if t.source.pathmap('%x') == '.c'
           sh "#{CC} #{args.join ' '} #{t.source} -c -o #{t.name}"
         else
