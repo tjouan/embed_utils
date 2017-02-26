@@ -57,7 +57,7 @@ module EmbedUtils
         sh "#{OBJCOPY} -O ihex -R .eeprom #{ELF_FILE} #{t.name}"
       end
 
-      file ELF_FILE => [objs, libs_archive] do |t|
+      file ELF_FILE => [*objs, libs_archive] do |t|
         sh "#{CC} #{linker_flags} -o #{t.name} #{t.prerequisites.join ' '}"
       end
 
