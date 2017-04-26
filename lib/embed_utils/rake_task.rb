@@ -179,6 +179,7 @@ module EmbedUtils
         "#{arduino_dir}/hardware/arduino/avr/cores/arduino"
       else
         %W[
+          #{LIBRARIES_DIR}/#{lib}/avr
           #{LIBRARIES_DIR}/#{lib}
           #{arduino_dir}/libraries/#{lib}/src/avr
           #{arduino_dir}/libraries/#{lib}/src
